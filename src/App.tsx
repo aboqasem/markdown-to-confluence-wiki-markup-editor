@@ -1,8 +1,8 @@
-import { markdown } from '@codemirror/lang-markdown';
-import { languages } from '@codemirror/language-data';
-import { basicSetup } from 'codemirror';
-import { createSignal } from 'solid-js';
-import { Editor, baseTheme } from '~/components/editor';
+import { markdown } from "@codemirror/lang-markdown";
+import { languages } from "@codemirror/language-data";
+import { basicSetup } from "codemirror";
+import { createSignal } from "solid-js";
+import { Editor, baseTheme } from "~/components/editor";
 
 function Header() {
   return (
@@ -17,7 +17,7 @@ function Header() {
 }
 
 function App() {
-  const [input, setInput] = createSignal('');
+  const [input, setInput] = createSignal("");
 
   return (
     <div class="h-screen max-h-screen flex flex-col">

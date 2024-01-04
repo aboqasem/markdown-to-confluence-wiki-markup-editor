@@ -1,13 +1,13 @@
-import { closeBrackets, closeBracketsKeymap } from '@codemirror/autocomplete';
-import { defaultKeymap, history, historyKeymap } from '@codemirror/commands';
+import { closeBrackets, closeBracketsKeymap } from "@codemirror/autocomplete";
+import { defaultKeymap, history, historyKeymap } from "@codemirror/commands";
 import {
   bracketMatching,
   defaultHighlightStyle,
   indentOnInput,
   syntaxHighlighting,
-} from '@codemirror/language';
-import { highlightSelectionMatches, searchKeymap } from '@codemirror/search';
-import { EditorState, Extension } from '@codemirror/state';
+} from "@codemirror/language";
+import { highlightSelectionMatches, searchKeymap } from "@codemirror/search";
+import { EditorState, Extension } from "@codemirror/state";
 import {
   EditorView,
   drawSelection,
@@ -16,13 +16,13 @@ import {
   highlightSpecialChars,
   keymap,
   lineNumbers,
-} from '@codemirror/view';
+} from "@codemirror/view";
 import {
   CreateCodeMirrorProps,
   createCodeMirror,
   createEditorControlledValue,
-} from 'solid-codemirror';
-import { Accessor, ComponentProps, splitProps } from 'solid-js';
+} from "solid-codemirror";
+import { Accessor, ComponentProps, splitProps } from "solid-js";
 
 export const basicSetup = [
   lineNumbers(),
@@ -41,20 +41,20 @@ export const basicSetup = [
 ];
 
 export const baseTheme = EditorView.baseTheme({
-  '&': {
-    height: '100%',
-    width: '100%',
+  "&": {
+    height: "100%",
+    width: "100%",
   },
 });
 
 export function Editor(
-  props: ComponentProps<'div'> &
-    Pick<CreateCodeMirrorProps, 'onValueChange'> & {
+  props: ComponentProps<"div"> &
+    Pick<CreateCodeMirrorProps, "onValueChange"> & {
       value?: string | Accessor<string>;
       extensions?: (Extension | Accessor<Extension | undefined>)[];
     },
 ) {
-  const [componentProps, divProps] = splitProps(props, ['value', 'onValueChange', 'extensions']);
+  const [componentProps, divProps] = splitProps(props, ["value", "onValueChange", "extensions"]);
 
   const {
     editorView,
@@ -62,17 +62,19 @@ export function Editor(
     ref: editorRef,
   } = createCodeMirror({
     value:
-      typeof componentProps.value === 'function' ? componentProps.value() : componentProps.value,
+      typeof componentProps.value === "function" ? componentProps.value() : componentProps.value,
     onValueChange: componentProps.onValueChange,
   });
 
-  if (typeof componentProps.value === 'function') {
+  if (typeof componentProps.value === "function") {
     createEditorControlledValue(editorView, componentProps.value);
   }
 
-  componentProps.extensions?.forEach((extension) => {
-    createExtension(extension);
-  });
+  if (componentProps.extensions) {
+    for (const extension of componentProps.extensions) {
+      createExtension(extension);
+    }
+  }
 
-  return <div {...divProps} ref={editorRef}></div>;
+  return <div {...divProps} ref={editorRef} />;
 }
