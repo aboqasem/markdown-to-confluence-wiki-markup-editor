@@ -2,7 +2,7 @@ import { markdown } from '@codemirror/lang-markdown';
 import { languages } from '@codemirror/language-data';
 import { basicSetup } from 'codemirror';
 import { createSignal } from 'solid-js';
-import { Editor, baseTheme } from './components/editor';
+import { Editor, baseTheme } from '~/components/editor';
 
 function Header() {
   return (
