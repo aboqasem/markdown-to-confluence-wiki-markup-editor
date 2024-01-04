@@ -1,8 +1,10 @@
 import { markdown } from "@codemirror/lang-markdown";
 import { languages } from "@codemirror/language-data";
 import { basicSetup } from "codemirror";
+import { marked } from "marked";
 import { createSignal } from "solid-js";
 import { Editor, baseTheme } from "~/components/editor";
+import { Md2CwmRenderer } from "~/renderers/md2cwm";
 
 function Header() {
   return (
@@ -17,7 +19,11 @@ function Header() {
 }
 
 function App() {
+  const renderer = new Md2CwmRenderer();
+
   const [input, setInput] = createSignal("");
+
+  const output = () => marked(input(), { renderer }) as string;
 
   return (
     <div class="h-screen max-h-screen flex flex-col">
@@ -35,7 +41,7 @@ function App() {
 
         <Editor
           class="size-full overflow-scroll"
-          value={input}
+          value={output}
           extensions={[basicSetup, baseTheme]}
         />
       </div>
