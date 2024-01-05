@@ -1,5 +1,7 @@
 import { Renderer } from "marked";
 
+const BR_PATTERN = /^\s*<br\s*\/?>\s*$/;
+
 const ZERO_WIDTH_SPACE = "\u200B";
 
 export class Md2CwmRenderer extends Renderer {
@@ -12,8 +14,12 @@ export class Md2CwmRenderer extends Renderer {
     return `bq. ${quote}\n`;
   }
 
-  override html(html: string, block?: boolean): string {
-    return super.html(html, block);
+  override html(html: string, _block?: boolean): string {
+    if (BR_PATTERN.test(html)) {
+      return this.br();
+    }
+
+    return `{html}${html}{html}\n`;
   }
 
   override heading(text: string, level: number, _raw: string): string {
@@ -41,7 +47,7 @@ export class Md2CwmRenderer extends Renderer {
   }
 
   override table(header: string, body: string): string {
-    return `${header}${body}`;
+    return `${header}${body}\n`;
   }
 
   override tablerow(content: string): string {
