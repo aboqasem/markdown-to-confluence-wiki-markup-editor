@@ -4,6 +4,15 @@ const BR_PATTERN = /^\s*<br\s*\/?>\s*$/;
 
 const ZERO_WIDTH_SPACE = "\u200B";
 
+const UNESCAPE_MAP: Record<string, string> = {
+  "&amp;": "&",
+  "&lt;": "<",
+  "&gt;": ">",
+  "&quot;": '"',
+  "&#39;": "'",
+};
+const UNESCAPE_PATTERN = new RegExp(`(${Object.keys(UNESCAPE_MAP).join("|")})`, "g");
+
 export class Md2CwmRenderer extends Renderer {
   override code(code: string, infostring: string | undefined, _escaped: boolean): string {
     const languageProp = infostring ? `language=${infostring}` : "";
@@ -77,7 +86,7 @@ export class Md2CwmRenderer extends Renderer {
   }
 
   override br(): string {
-    return "\\\\";
+    return " \\\\ ";
   }
 
   override del(text: string): string {
@@ -95,6 +104,6 @@ export class Md2CwmRenderer extends Renderer {
   }
 
   override text(text: string): string {
-    return super.text(text);
+    return text.replace(UNESCAPE_PATTERN, (match) => UNESCAPE_MAP[match]);
   }
 }
