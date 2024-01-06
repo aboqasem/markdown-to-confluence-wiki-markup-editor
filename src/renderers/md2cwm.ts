@@ -1,6 +1,18 @@
 import { Renderer } from "marked";
 
-const BR_PATTERN = /^\s*<br\s*\/?>\s*$/;
+const BR_PATTERN = /\s*<br\s*\/?>\s*/g;
+const BR_ZERO_OR_MORE_PATTERN = new RegExp(`(?:${BR_PATTERN.source})*`);
+const BR_REPLACE_PATTERN = new RegExp(
+  `^(${BR_ZERO_OR_MORE_PATTERN.source})?((?:.|\\s)*?)(${BR_ZERO_OR_MORE_PATTERN.source})?$`,
+);
+type BrReplacer = (
+  match: string,
+  startBrs: string | undefined,
+  other: string | undefined,
+  endBrs: string | undefined,
+  offset: number,
+  string: string,
+) => string;
 
 const ZERO_WIDTH_SPACE = "\u200B";
 
@@ -24,11 +36,17 @@ export class Md2CwmRenderer extends Renderer {
   }
 
   override html(html: string, _block?: boolean): string {
-    if (BR_PATTERN.test(html)) {
-      return this.br();
-    }
+    const replacer: BrReplacer = (_match, startBrs, other, endBrs) => {
+      const br = this.br();
 
-    return `{html}${html}{html}\n`;
+      const start = startBrs?.replace(BR_PATTERN, br) ?? "";
+      const html = other ? `\n{html}${other}{html}\n` : "";
+      const end = endBrs?.replace(BR_PATTERN, br) ?? "";
+
+      return `${start}${html}${end}`;
+    };
+
+    return html.replace(BR_REPLACE_PATTERN, replacer);
   }
 
   override heading(text: string, level: number, _raw: string): string {
