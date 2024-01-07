@@ -1,0 +1,71 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Converter > converts markdown to confluence wiki markup 1`] = `
+<div
+  aria-multiline="true"
+  autocapitalize="off"
+  autocorrect="off"
+  class="cm-content"
+  contenteditable="true"
+  role="textbox"
+  spellcheck="false"
+  style="tab-size: 4;"
+  translate="no"
+>
+  <div
+    class="cm-activeLine cm-line"
+  >
+    h1. Hello World
+  </div>
+  <div
+    class="cm-line"
+  >
+    * This is a list item
+  </div>
+  <div
+    class="cm-line"
+  >
+    * This is another list item
+  </div>
+  <div
+    class="cm-line"
+  >
+    <br />
+  </div>
+  <div
+    class="cm-line"
+  >
+    bq. This is a blockquote
+  </div>
+  <div
+    class="cm-line"
+  >
+    <br />
+  </div>
+  <div
+    class="cm-line"
+  >
+    {code:language=js|linenumbers=true|collapse=false}
+  </div>
+  <div
+    class="cm-line"
+  >
+    // This is a code block
+  </div>
+  <div
+    class="cm-line"
+  >
+    console.log("Hello World");
+  </div>
+  <div
+    class="cm-line"
+  >
+    {code}
+  </div>
+  <div
+    class="cm-line"
+  >
+    <br />
+  </div>
+</div>
+`;
