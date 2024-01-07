@@ -1,9 +1,9 @@
-import { markdown } from "@codemirror/lang-markdown";
-import { languages } from "@codemirror/language-data";
-import { basicSetup } from "codemirror";
 import { marked } from "marked";
 import { createSignal } from "solid-js";
-import { Editor, baseTheme } from "~/components/editor";
+import { Editor } from "~/components/editor";
+import { baseTheme } from "~/extensions/base-theme";
+import { lazyBasicSetup } from "~/extensions/basic-setup.lazy";
+import { lazyMarkdown } from "~/extensions/lang-markdown.lazy";
 import { Md2CwmRenderer } from "~/renderers/md2cwm";
 
 function Header() {
@@ -34,7 +34,8 @@ function App() {
           class="size-full overflow-scroll"
           value={input}
           onValueChange={setInput}
-          extensions={[basicSetup, baseTheme, markdown({ codeLanguages: languages })]}
+          extensions={[baseTheme]}
+          lazyExtensions={[lazyBasicSetup, lazyMarkdown]}
         />
 
         <hr class="border h-full border-gray-200" />
@@ -42,7 +43,8 @@ function App() {
         <Editor
           class="size-full overflow-scroll"
           value={output}
-          extensions={[basicSetup, baseTheme]}
+          extensions={[baseTheme]}
+          lazyExtensions={[lazyBasicSetup]}
         />
       </div>
     </div>

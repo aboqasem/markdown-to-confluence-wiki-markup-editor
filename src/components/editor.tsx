@@ -1,60 +1,28 @@
-import { closeBrackets, closeBracketsKeymap } from "@codemirror/autocomplete";
-import { defaultKeymap, history, historyKeymap } from "@codemirror/commands";
-import {
-  bracketMatching,
-  defaultHighlightStyle,
-  indentOnInput,
-  syntaxHighlighting,
-} from "@codemirror/language";
-import { highlightSelectionMatches, searchKeymap } from "@codemirror/search";
-import { EditorState, Extension } from "@codemirror/state";
-import {
-  EditorView,
-  drawSelection,
-  highlightActiveLine,
-  highlightActiveLineGutter,
-  highlightSpecialChars,
-  keymap,
-  lineNumbers,
-} from "@codemirror/view";
+import type { Extension } from "@codemirror/state";
 import {
   CreateCodeMirrorProps,
   createCodeMirror,
   createEditorControlledValue,
+  createLazyCompartmentExtension,
 } from "solid-codemirror";
 import { Accessor, ComponentProps, splitProps } from "solid-js";
 
-export const basicSetup = [
-  lineNumbers(),
-  highlightActiveLineGutter(),
-  highlightSpecialChars(),
-  history(),
-  drawSelection(),
-  EditorState.allowMultipleSelections.of(true),
-  indentOnInput(),
-  syntaxHighlighting(defaultHighlightStyle, { fallback: true }),
-  bracketMatching(),
-  closeBrackets(),
-  highlightActiveLine(),
-  highlightSelectionMatches(),
-  keymap.of([...closeBracketsKeymap, ...defaultKeymap, ...searchKeymap, ...historyKeymap]),
+export type EditorProps = ComponentProps<"div"> &
+  Pick<CreateCodeMirrorProps, "onValueChange"> & {
+    value?: string | Accessor<string>;
+    extensions?: (Extension | Accessor<Extension | undefined>)[];
+    lazyExtensions?: (() => Promise<Extension | null | undefined>)[];
+  };
+
+const componentPropsKeys: (keyof EditorProps)[] = [
+  "value",
+  "onValueChange",
+  "extensions",
+  "lazyExtensions",
 ];
 
-export const baseTheme = EditorView.baseTheme({
-  "&": {
-    height: "100%",
-    width: "100%",
-  },
-});
-
-export function Editor(
-  props: ComponentProps<"div"> &
-    Pick<CreateCodeMirrorProps, "onValueChange"> & {
-      value?: string | Accessor<string>;
-      extensions?: (Extension | Accessor<Extension | undefined>)[];
-    },
-) {
-  const [componentProps, divProps] = splitProps(props, ["value", "onValueChange", "extensions"]);
+export function Editor(props: EditorProps) {
+  const [componentProps, otherProps] = splitProps(props, componentPropsKeys);
 
   const {
     editorView,
@@ -76,5 +44,11 @@ export function Editor(
     }
   }
 
-  return <div {...divProps} ref={editorRef} />;
+  if (componentProps.lazyExtensions) {
+    for (const lazyExtension of componentProps.lazyExtensions) {
+      createLazyCompartmentExtension(lazyExtension, editorView);
+    }
+  }
+
+  return <div {...otherProps} ref={editorRef} />;
 }
