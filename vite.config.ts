@@ -1,4 +1,4 @@
-import { defineConfig, type Plugin } from "vite";
+import { type Plugin, defineConfig } from "vite";
 import solid from "vite-plugin-solid";
 import tsconfigPaths from "vite-tsconfig-paths";
 
