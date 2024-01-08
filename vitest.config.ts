@@ -9,13 +9,13 @@ export default defineConfig({
     deps: {
       optimizer: {
         web: {
-          enabled: true,
+          enabled: false,
         },
       },
     },
     environment: "jsdom",
     globals: true,
-    setupFiles: ["./setup-vitest.ts"],
+    setupFiles: ["./vitest.setup.ts"],
     testTransformMode: { web: ["/.[jt]sx?$/"] },
   },
   resolve: {
