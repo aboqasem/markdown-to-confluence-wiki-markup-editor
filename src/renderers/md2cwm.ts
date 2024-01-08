@@ -14,8 +14,6 @@ type BrReplacer = (
   string: string,
 ) => string;
 
-const ZERO_WIDTH_SPACE = "\u200B";
-
 const UNESCAPE_MAP: Record<string, string> = {
   "&amp;": "&",
   "&lt;": "<",
@@ -92,15 +90,15 @@ export class Md2CwmRenderer extends Renderer {
   }
 
   override strong(text: string): string {
-    return `${ZERO_WIDTH_SPACE}*${text}*${ZERO_WIDTH_SPACE}`;
+    return `{*}${text}{*}`;
   }
 
   override em(text: string): string {
-    return `${ZERO_WIDTH_SPACE}_${text}_${ZERO_WIDTH_SPACE}`;
+    return `{_}${text}{_}`;
   }
 
   override codespan(text: string): string {
-    return `${ZERO_WIDTH_SPACE}{{${text}}}${ZERO_WIDTH_SPACE}`;
+    return `{{{}${text}{}}}`;
   }
 
   override br(): string {
@@ -108,7 +106,7 @@ export class Md2CwmRenderer extends Renderer {
   }
 
   override del(text: string): string {
-    return `${ZERO_WIDTH_SPACE}-${text}-${ZERO_WIDTH_SPACE}`;
+    return `{-}${text}{-}`;
   }
 
   override link(href: string, title: string | null | undefined, text: string): string {
