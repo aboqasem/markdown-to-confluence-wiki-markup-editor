@@ -52,7 +52,7 @@ export class Md2CwmRenderer extends Renderer {
   }
 
   override hr(): string {
-    return "---\n";
+    return "----\n";
   }
 
   override list(body: string, ordered: boolean, _start: number | ""): string {
