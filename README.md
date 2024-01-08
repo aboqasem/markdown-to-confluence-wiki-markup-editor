@@ -4,6 +4,33 @@
 
 An editor that converts Markdown to [Confluence Wiki Markup](https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html).
 
+## Features
+
+- [x] Basic functionality
+  - [x] [Headings](https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html#ConfluenceWikiMarkup-Headings)
+  - [ ] [Lists](https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html#ConfluenceWikiMarkup-Lists)
+    - [x] Single level
+    - [ ] Multiple levels
+  - [x] [Links](https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html#ConfluenceWikiMarkup-Links)
+  - [x] [Tables](https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html#ConfluenceWikiMarkup-Tables)
+  - [ ] [Text effects](https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html#ConfluenceWikiMarkup-TextEffects)
+    - [x] Bold / Strong
+    - [x] Italic / Emphasis
+    - [-] Citation?
+    - [ ] Deleted / Strikethrough
+    - [-] Inserted / Underline
+    - [-] Superscript?
+    - [-] Subscript?
+    - [x] Monospaced
+    - [x] Blockquote
+    - [-] Colored?
+  - [x] [Text breaks](https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html#ConfluenceWikiMarkup-TextBreaks)
+    - [x] Line break (using `<br/>`s)
+    - [x] Horizontal rule
+  - [ ] [Links](https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html#ConfluenceWikiMarkup-Links)
+  - [ ] [Images](https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html#ConfluenceWikiMarkup-Images)
+  - [x] [Simple code blocks](https://confluence.atlassian.com/doc/code-block-macro-139390.html)
+
 ## Tech Stack
 
 - [TypeScript](https://www.typescriptlang.org)
