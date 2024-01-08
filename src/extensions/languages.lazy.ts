@@ -4,7 +4,7 @@ let languages: Promise<LanguageDescription[]> | null = null;
 
 export function lazyLanguages(): Promise<LanguageDescription[]> {
   if (languages === null) {
-    languages = import("@codemirror/language-data").then((m) => m.languages);
+    languages = import("./languages").then((m) => m.languages);
   }
 
   return languages;

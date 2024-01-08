@@ -1,4 +1,5 @@
 import { Renderer } from "marked";
+import { SupportedCwmLanguageName, supportedCwmLanguages } from "~/data/supported-languages";
 
 const BR_PATTERN = /\s*<br\s*\/?>\s*/g;
 const BR_ZERO_OR_MORE_PATTERN = new RegExp(`(?:${BR_PATTERN.source})*`);
@@ -25,8 +26,12 @@ const UNESCAPE_PATTERN = new RegExp(`(${Object.keys(UNESCAPE_MAP).join("|")})`, 
 
 export class Md2CwmRenderer extends Renderer {
   override code(code: string, infostring: string | undefined, _escaped: boolean): string {
-    const languageProp = infostring ? `language=${infostring}` : "";
-    return `{code:${languageProp}|linenumbers=true|collapse=false}\n${code}\n{code}\n`;
+    let language: SupportedCwmLanguageName = "text";
+    if (infostring) {
+      language = supportedCwmLanguages.find((l) => l.aliases.includes(infostring))?.cwm ?? "text";
+    }
+
+    return `{code:language=${language}|linenumbers=true|collapse=false}\n${code}\n{code}\n`;
   }
 
   override blockquote(quote: string): string {
