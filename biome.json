@@ -8,7 +8,8 @@
     "rules": {
       "recommended": true,
       "nursery": {
-        "useGroupedTypeImport": "warn"
+        "useGroupedTypeImport": "warn",
+        "useAwait": "warn"
       }
     },
     "ignore": ["node_modules", "dist"]

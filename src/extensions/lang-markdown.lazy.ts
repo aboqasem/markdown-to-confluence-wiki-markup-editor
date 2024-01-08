@@ -3,7 +3,7 @@ import { lazyLanguages } from "~/extensions/languages.lazy";
 
 let markdown: Promise<Extension> | null = null;
 
-export async function lazyMarkdown(): Promise<Extension> {
+export function lazyMarkdown(): Promise<Extension> {
   const languages = lazyLanguages();
 
   if (markdown === null) {
