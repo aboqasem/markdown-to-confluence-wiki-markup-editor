@@ -1,0 +1,5 @@
+[build]
+  base = "/"
+  command = "bun run build"
+  publish = "dist/"
+  ignore = "bash ./netlify-ignore.bash"
