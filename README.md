@@ -6,7 +6,7 @@ An editor that converts Markdown to [Confluence Wiki Markup](https://confluence.
 
 ## Features
 
-- [x] Basic functionality
+- [ ] Basic functionality
   - [x] [Headings](https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html#ConfluenceWikiMarkup-Headings)
   - [ ] [Lists](https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html#ConfluenceWikiMarkup-Lists)
     - [x] Single level
@@ -16,20 +16,30 @@ An editor that converts Markdown to [Confluence Wiki Markup](https://confluence.
   - [ ] [Text effects](https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html#ConfluenceWikiMarkup-TextEffects)
     - [x] Bold / Strong
     - [x] Italic / Emphasis
-    - [-] Citation?
     - [ ] Deleted / Strikethrough
-    - [-] Inserted / Underline
-    - [-] Superscript?
-    - [-] Subscript?
     - [x] Monospaced
     - [x] Blockquote
-    - [-] Colored?
+    - [ ] Citation ❓
+    - [ ] Inserted / Underline ❓
+    - [ ] Superscript ❓
+    - [ ] Subscript ❓
+    - [ ] Colored ❓
   - [x] [Text breaks](https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html#ConfluenceWikiMarkup-TextBreaks)
-    - [x] Line break (using `<br/>`s)
+    - [x] Line break (using `<br/>`)
     - [x] Horizontal rule
   - [ ] [Links](https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html#ConfluenceWikiMarkup-Links)
   - [ ] [Images](https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html#ConfluenceWikiMarkup-Images)
   - [x] [Simple code blocks](https://confluence.atlassian.com/doc/code-block-macro-139390.html)
+- [ ] Advanced functionality
+  - [ ] Permanent links
+  - [ ] Macros & Customizations
+    - [ ] [Code blocks](https://confluence.atlassian.com/doc/code-block-macro-139390.html)
+      - [ ] Title
+      - [ ] Collapsible
+      - [ ] Line numbers
+      - [ ] First line number
+      - [ ] Theme
+  - [ ] Configuration profiles
 
 ## Tech Stack
 
