@@ -1,4 +1,4 @@
-import { Renderer } from "marked";
+import { type MarkedOptions, Renderer, marked } from "marked";
 import { SupportedCwmLanguageName, supportedCwmLanguages } from "~/data/supported-languages";
 
 const BR_PATTERN = /\s*<br\s*\/?>\s*/g;
@@ -127,4 +127,13 @@ export class Md2CwmRenderer extends Renderer {
   override text(text: string): string {
     return text.replace(UNESCAPE_PATTERN, (match) => UNESCAPE_MAP[match]);
   }
+}
+
+const renderer = new Md2CwmRenderer();
+const defaultOptions: MarkedOptions = {
+  renderer,
+};
+
+export function md2Cwm(markdown: string): string {
+  return marked(markdown, defaultOptions) as string;
 }

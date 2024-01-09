@@ -4,17 +4,20 @@ import userEvent from "@testing-library/user-event";
 import { Converter } from "~/components/converter";
 
 describe("Converter", () => {
+  const converterId = "converter";
+  const converterInputId = `${converterId}_input-editor`;
+  const converterOutputId = `${converterId}_output-editor`;
   let rendered: ReturnType<typeof render>;
   let inputEditor: HTMLElement;
   let outputEditor: HTMLElement;
 
   beforeEach(() => {
-    rendered = render(Converter);
+    rendered = render(() => <Converter id={converterId} />);
     inputEditor = rendered
-      .getByTestId("converter-input")
+      .getByTestId(converterInputId)
       .querySelector(".cm-content") as HTMLElement;
     outputEditor = rendered
-      .getByTestId("converter-output")
+      .getByTestId(converterOutputId)
       .querySelector(".cm-content") as HTMLElement;
   });
 
