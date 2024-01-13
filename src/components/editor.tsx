@@ -1,11 +1,11 @@
 import type { Extension } from "@codemirror/state";
 import {
-  CreateCodeMirrorProps,
+  type CreateCodeMirrorProps,
   createCodeMirror,
   createEditorControlledValue,
   createLazyCompartmentExtension,
 } from "solid-codemirror";
-import { Accessor, ComponentProps, splitProps } from "solid-js";
+import { type Accessor, type ComponentProps, splitProps } from "solid-js";
 
 export type EditorProps = ComponentProps<"div"> &
   Pick<CreateCodeMirrorProps, "onValueChange"> & {

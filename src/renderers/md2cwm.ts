@@ -1,5 +1,5 @@
 import { type MarkedOptions, Renderer, marked } from "marked";
-import { SupportedCwmLanguageName, supportedCwmLanguages } from "~/data/supported-languages";
+import { type SupportedCwmLanguageName, supportedCwmLanguages } from "~/data/supported-languages";
 
 const BR_PATTERN = /\s*<br\s*\/?>\s*/g;
 const BR_ZERO_OR_MORE_PATTERN = new RegExp(`(?:${BR_PATTERN.source})*`);

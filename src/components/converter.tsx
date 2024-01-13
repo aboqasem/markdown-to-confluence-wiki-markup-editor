@@ -1,4 +1,4 @@
-import { ComponentProps, createSignal } from "solid-js";
+import { type ComponentProps, createSignal } from "solid-js";
 import { Editor } from "~/components/editor";
 import { baseTheme } from "~/extensions/base-theme";
 import { lazyBasicSetup } from "~/extensions/basic-setup.lazy";

@@ -14,7 +14,10 @@
       "recommended": true,
       "nursery": {
         "useGroupedTypeImport": "warn",
-        "useAwait": "warn"
+        "useAwait": "warn",
+        "useImportType": "warn",
+        "useExportType": "warn",
+        "useConsistentArrayType":"warn"
       }
     }
   },
