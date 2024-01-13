@@ -17,7 +17,7 @@
         "useAwait": "warn",
         "useImportType": "warn",
         "useExportType": "warn",
-        "useConsistentArrayType":"warn"
+        "useConsistentArrayType": "warn"
       }
     }
   },
