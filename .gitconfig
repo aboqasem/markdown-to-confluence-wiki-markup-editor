@@ -1,0 +1,5 @@
+# to include this config, run the following command in the root of the repo:
+# `git config --local include.path ../.gitconfig`
+
+[diff "bunlock"]
+textconv = bun
