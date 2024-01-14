@@ -13,7 +13,7 @@ exports[`Converter > converts markdown to confluence wiki markup 1`] = `
   translate="no"
 >
   <div
-    class="cm-activeLine cm-line"
+    class="cm-line"
   >
     h1. Hello World
   </div>
